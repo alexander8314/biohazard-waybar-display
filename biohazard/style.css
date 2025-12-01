@@ -1,6 +1,6 @@
 * {
-    font-family: "JetBrainsMono Nerd Font", monospace;
-    font-size: 12px;
+    font-family: "JetBrainsMono Nerd Font", "Courier New", monospace;
+    font-size: 11px;
     font-weight: bold;
     min-height: 0;
     border: none;
@@ -8,53 +8,182 @@
 }
 
 window#waybar {
-    background: linear-gradient(180deg, rgba(0, 30, 10, 0.95), rgba(0, 50, 20, 0.95));
-    border-radius: 20px;
-    border: 3px solid #00ff00;
-    box-shadow: 0 0 50px rgba(0, 255, 0, 0.7), inset 0 0 50px rgba(0, 255, 0, 0.15);
+    background: linear-gradient(180deg, rgba(0, 20, 10, 0.98), rgba(0, 40, 20, 0.98));
+    border-radius: 15px;
+    border: 2px solid #00ff00;
+    box-shadow: 0 0 40px rgba(0, 255, 0, 0.6), inset 0 0 40px rgba(0, 255, 0, 0.1);
 }
 
 #custom-biohazard-core {
     color: #00ff00;
-    font-size: 48px;
-    padding: 20px 0;
-    margin: 15px 10px;
+    font-size: 56px;
+    padding: 25px 0;
+    margin: 15px 15px;
     border: 3px solid #00ff00;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 255, 0, 0.3), rgba(0, 200, 0, 0.5));
-    box-shadow: 0 0 40px rgba(0, 255, 0, 0.8), inset 0 0 30px rgba(0, 255, 0, 0.3);
-    text-shadow: 0 0 20px #00ff00;
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.4), rgba(0, 150, 0, 0.6));
+    box-shadow: 0 0 50px rgba(0, 255, 0, 0.9), inset 0 0 35px rgba(0, 255, 0, 0.4);
+    text-shadow: 0 0 25px #00ff00;
+    animation: pulse 2s ease-in-out infinite;
 }
 
-#cpu {
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 50px rgba(0, 255, 0, 0.9), inset 0 0 35px rgba(0, 255, 0, 0.4);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 70px rgba(0, 255, 0, 1), inset 0 0 45px rgba(0, 255, 0, 0.6);
+        transform: scale(1.02);
+    }
+}
+
+#custom-network-mode {
     color: #00ff00;
-    font-size: 14px;
-    padding: 12px 8px;
-    margin: 8px 10px;
-    border: 2px solid rgba(0, 255, 0, 0.4);
-    border-radius: 10px;
-    background: rgba(0, 60, 30, 0.7);
+    font-size: 12px;
+    font-weight: bold;
+    padding: 8px 10px;
+    margin: 8px 15px;
+    border: 1px solid rgba(0, 255, 0, 0.5);
+    border-radius: 5px;
+    background: rgba(0, 50, 25, 0.9);
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
     text-shadow: 0 0 8px #00ff00;
+    letter-spacing: 1px;
 }
 
-#memory,
-#disk,
-#temperature {
+#network {
     color: #00ff00;
-    font-size: 14px;
-    padding: 12px 8px;
-    margin: 8px 10px;
+    font-size: 11px;
+    padding: 10px 12px;
+    margin: 8px 15px;
     border: 2px solid rgba(0, 255, 0, 0.4);
-    border-radius: 10px;
-    background: rgba(0, 60, 30, 0.7);
+    border-left: 4px solid #00ff00;
+    border-radius: 8px;
+    background: rgba(0, 50, 25, 0.8);
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
-    text-shadow: 0 0 8px #00ff00;
+    text-shadow: 0 0 6px #00ff00;
+    line-height: 1.4;
 }
 
-#temperature.critical {
-    color: #ff0000;
-    border-color: #ff0000;
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
-    text-shadow: 0 0 15px #ff0000;
+#network.disconnected {
+    color: #ff3333;
+    border-color: rgba(255, 51, 51, 0.6);
+    border-left-color: #ff3333;
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
+    text-shadow: 0 0 6px #ff3333;
+}
+
+#bluetooth {
+    color: #00d4ff;
+    font-size: 11px;
+    padding: 10px 12px;
+    margin: 8px 15px;
+    border: 2px solid rgba(0, 212, 255, 0.4);
+    border-left: 4px solid #00d4ff;
+    border-radius: 8px;
+    background: rgba(0, 30, 50, 0.8);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+    text-shadow: 0 0 6px #00d4ff;
+    line-height: 1.4;
+}
+
+#bluetooth.disabled,
+#bluetooth.off {
+    color: #666;
+    border-color: rgba(100, 100, 100, 0.4);
+    border-left-color: #666;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+#custom-packet-stats {
+    color: #00ff88;
+    font-size: 10px;
+    padding: 8px 10px;
+    margin: 6px 15px;
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-left: 3px solid #00ff88;
+    border-radius: 6px;
+    background: rgba(0, 40, 30, 0.9);
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+    text-shadow: 0 0 4px #00ff88;
+    font-family: "Courier New", monospace;
+}
+
+#custom-network-devices {
+    color: #ffff00;
+    font-size: 10px;
+    padding: 8px 10px;
+    margin: 6px 15px;
+    border: 1px solid rgba(255, 255, 0, 0.3);
+    border-left: 3px solid #ffff00;
+    border-radius: 6px;
+    background: rgba(40, 40, 0, 0.9);
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.2);
+    text-shadow: 0 0 4px #ffff00;
+}
+
+#custom-dns-queries {
+    color: #ff00ff;
+    font-size: 10px;
+    padding: 8px 10px;
+    margin: 6px 15px;
+    border: 1px solid rgba(255, 0, 255, 0.3);
+    border-left: 3px solid #ff00ff;
+    border-radius: 6px;
+    background: rgba(40, 0, 40, 0.9);
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.2);
+    text-shadow: 0 0 4px #ff00ff;
+}
+
+#custom-protocol-breakdown {
+    color: #00ffff;
+    font-size: 10px;
+    padding: 8px 10px;
+    margin: 6px 15px;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-left: 3px solid #00ffff;
+    border-radius: 6px;
+    background: rgba(0, 40, 40, 0.9);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    text-shadow: 0 0 4px #00ffff;
+}
+
+#custom-gateway-info {
+    color: #ff8800;
+    font-size: 10px;
+    padding: 8px 10px;
+    margin: 6px 15px;
+    border: 1px solid rgba(255, 136, 0, 0.3);
+    border-left: 3px solid #ff8800;
+    border-radius: 6px;
+    background: rgba(40, 20, 0, 0.9);
+    box-shadow: 0 0 10px rgba(255, 136, 0, 0.2);
+    text-shadow: 0 0 4px #ff8800;
+}
+
+#custom-interface-stats {
+    color: #00ff00;
+    font-size: 10px;
+    padding: 8px 10px;
+    margin: 6px 15px;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-left: 3px solid #00ff00;
+    border-radius: 6px;
+    background: rgba(0, 40, 20, 0.9);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+    text-shadow: 0 0 4px #00ff00;
+    animation: data-pulse 2s ease-in-out infinite;
+}
+
+@keyframes data-pulse {
+    0%, 100% {
+        border-left-color: #00ff00;
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+    }
+    50% {
+        border-left-color: #00ff88;
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+    }
 }

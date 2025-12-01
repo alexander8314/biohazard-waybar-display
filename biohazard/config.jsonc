@@ -1,35 +1,87 @@
 {
     "layer": "top",
     "position": "left",
-    "width": 200,
+    "width": 300,
     "modules-left": [
         "custom/biohazard-core",
-        "cpu",
-        "memory",
-        "disk",
-        "temperature"
+        "custom/network-mode",
+        "network",
+        "bluetooth",
+        "custom/packet-stats",
+        "custom/network-devices",
+        "custom/dns-queries",
+        "custom/protocol-breakdown",
+        "custom/gateway-info",
+        "custom/interface-stats"
     ],
     "custom/biohazard-core": {
         "format": "☣",
-        "tooltip": "BIOHAZARD CONTAINMENT"
+        "tooltip": "NETWORK INTELLIGENCE\nDEEP PACKET INSPECTION"
     },
-    "cpu": {
-        "format": "CPU\n{usage}%",
+    "custom/network-mode": {
+        "format": "{}",
+        "interval": 5,
+        "exec": "echo 'MONITOR MODE'",
+        "tooltip": "Network Surveillance Active"
+    },
+    "network": {
+        "format-wifi": "WIFI: {essid}\nSIGNAL: {signalStrength}%\nFREQ: {frequency}MHz",
+        "format-ethernet": "ETHERNET\nLINK: ACTIVE\nSPEED: 1000Mbps",
+        "format-disconnected": "NETWORK: OFFLINE",
+        "tooltip-format-wifi": "Interface: {ifname}\nSSID: {essid}\nBSSID: {bssid}\nSignal: {signalStrength}%\nFrequency: {frequency}MHz\nChannel: Est. from freq",
+        "tooltip-format-ethernet": "Interface: {ifname}\nMAC: Check ifconfig",
         "interval": 2
     },
-    "memory": {
-        "format": "RAM\n{percentage}%",
-        "interval": 2
+    "bluetooth": {
+        "format": "BLUETOOTH: {status}",
+        "format-disabled": "BLUETOOTH: DISABLED",
+        "format-off": "BLUETOOTH: POWERED OFF", 
+        "format-connected": "BLUETOOTH: ACTIVE\nDEVICES: {num_connections}",
+        "tooltip-format": "Controller: {controller_alias}\nMAC: {controller_address}\n\n{num_connections} device(s) connected",
+        "tooltip-format-connected": "{controller_alias} [{controller_address}]\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "• {device_alias}\n  {device_address}",
+        "tooltip-format-enumerate-connected-battery": "• {device_alias} ({device_battery_percentage}%)\n  {device_address}"
     },
-    "disk": {
-        "format": "DISK\n{percentage_used}%",
-        "path": "/",
-        "interval": 30
+    "custom/packet-stats": {
+        "format": "{}",
+        "interval": 2,
+        "exec": "~/.config/waybar/scripts/packet-stats.sh",
+        "return-type": "json",
+        "tooltip": true
     },
-    "temperature": {
-        "format": "Temperature 🌡\n{temperatureC}°C",
-        "format-icons": ["❄", "🌡", "🔥"],
-        "critical-threshold": 80,
-        "interval": 5
+    "custom/network-devices": {
+        "format": "{}",
+        "interval": 10,
+        "exec": "~/.config/waybar/scripts/network-scan.sh",
+        "return-type": "json",
+        "tooltip": true
+    },
+    "custom/dns-queries": {
+        "format": "{}",
+        "interval": 5,
+        "exec": "~/.config/waybar/scripts/dns-monitor.sh",
+        "return-type": "json",
+        "tooltip": true
+    },
+    "custom/protocol-breakdown": {
+        "format": "{}",
+        "interval": 3,
+        "exec": "~/.config/waybar/scripts/protocol-stats.sh",
+        "return-type": "json",
+        "tooltip": true
+    },
+    "custom/gateway-info": {
+        "format": "{}",
+        "interval": 10,
+        "exec": "~/.config/waybar/scripts/gateway-info.sh",
+        "return-type": "json",
+        "tooltip": true
+    },
+    "custom/interface-stats": {
+        "format": "{}",
+        "interval": 2,
+        "exec": "~/.config/waybar/scripts/interface-stats.sh",
+        "return-type": "json",
+        "tooltip": true
     }
 }
