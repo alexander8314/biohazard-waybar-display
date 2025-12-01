@@ -1,0 +1,35 @@
+{
+    "layer": "top",
+    "position": "left",
+    "width": 200,
+    "modules-left": [
+        "custom/biohazard-core",
+        "cpu",
+        "memory",
+        "disk",
+        "temperature"
+    ],
+    "custom/biohazard-core": {
+        "format": "☣",
+        "tooltip": "BIOHAZARD CONTAINMENT"
+    },
+    "cpu": {
+        "format": "CPU\n{usage}%",
+        "interval": 2
+    },
+    "memory": {
+        "format": "RAM\n{percentage}%",
+        "interval": 2
+    },
+    "disk": {
+        "format": "DISK\n{percentage_used}%",
+        "path": "/",
+        "interval": 30
+    },
+    "temperature": {
+        "format": "Temperature 🌡\n{temperatureC}°C",
+        "format-icons": ["❄", "🌡", "🔥"],
+        "critical-threshold": 80,
+        "interval": 5
+    }
+}
